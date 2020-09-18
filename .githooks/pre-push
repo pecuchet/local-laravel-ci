@@ -1,0 +1,7 @@
+#!/usr/scripts/env bash
+
+[[ "$(git branch)" != "main" ]] && target="staging" || COMPOSE="production"
+
+./scripts/deploy.sh ${target}
+
+exit $?
