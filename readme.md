@@ -12,4 +12,5 @@ git push -u origin feature-new-service  # Before the push to origin changes will
 ## To do
 - extend `make install` to install composer tools
 - find way to install in existing/new Laravel app
+- support [skip ci]
 - 
