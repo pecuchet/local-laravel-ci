@@ -13,16 +13,19 @@ can_commit=true
 # Fix code style issues
 # ~~~~~~
 
-make style
+echo_flag "Code styling..."
 
-echo -e "\n"
+for staged in ${staged_files}; do
+    ./vendor/bin/php-cs-fixer fix --quiet --allow-risky=yes "${staged}"
 
-if [[ "$?" != 0 ]]; then
-    echo_error "Code styling failed!"
-    can_commit=false
-else
-    echo_success "Code styled"
-fi
+    if [[ $? -eq 0 ]]; then
+        git add "${staged}"
+        echo_success "${staged}"
+    else
+        can_commit=false
+        break
+    fi
+done
 
 # Run tests
 # ~~~~~~
@@ -39,10 +42,11 @@ fi
 echo -e "\n"
 
 if ! ${can_commit}; then
-    echo_error "Commit aborted!"
+    echo -e "\n"
+    echo_error "Commit aborted!" "\n"
     exit 1
 else
-    echo_success "Commit allowed..."
+    echo_flag "Commit allowed..."
 fi
 
 exit $?

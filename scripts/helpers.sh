@@ -8,12 +8,12 @@ echo_title() {
 
 # Red text preceded by a high voltage sign
 echo_error() {
-    echo_color red "⚡ ${1}" '\n'
+    echo_color red "⚡ ${1}" ${2}
 }
 
 # Red text preceded by a tick
 echo_success() {
-    echo_color green "✓ ${1}" '\n'
+    echo_color green "✓ ${1}" ${2}
 }
 
 # ASCII flag

@@ -13,4 +13,9 @@ git push -u origin feature-new-service  # Before the push to origin changes will
 - extend `make install` to install composer tools
 - find way to install in existing/new Laravel app
 - support [skip ci]
-- 
+- git re-add files if CS changes
+- pre-push deploy is also triggered when doing `git push origin --delete feature-ci`
+    - ie. rsync to production !
+        - use push target instead of current branch
+- what if you do not want to push a feature branch to staging?
+    - eg a feature which is not ready, but you want it in your vcs
